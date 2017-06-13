@@ -293,3 +293,61 @@ failed-protagonist-names
 (def inc3 (inc-maker 3))
 
 (inc3 7)
+
+(let [x 3]
+  x)
+
+(def dalmatian-list
+  ["Pongo" "Perdita" "Puppy 1" "Puppy 2"])
+
+(let [dalmatians (take 2 dalmatian-list)]
+  dalmatians)
+
+(def x 0)
+(let [x 1] x)
+
+(let [x (inc3 x)] x)
+
+
+(let [[pongo & dalmatians] dalmatian-list]
+  [pongo dalmatians])
+
+(into [] (set [:a :a]))
+
+(loop [iteration 0]
+  (println (str "Iteration " iteration))
+  (if (> iteration 3)
+    (println "Goodbye!")
+    (recur (inc iteration))))
+
+(defn recursive-printer
+  ([]
+   (recursive-printer 0))
+  ([iteration]
+   (println iteration)
+   (if (> iteration 3)
+     (println "Goodbye!")
+     (recursive-printer (inc iteration)))))
+
+(recursive-printer)
+
+(re-find #"^left-" "left-chini")
+
+(re-find #"^left-" "cleft-chini")
+
+(re-find #"^left-" "wonglebart")
+
+(reduce + [1 2 3 4])
+
+(reduce + 15 [1 2 3 4])
+
+(defn my-reduce
+  ([f initial coll]
+   (loop [result initiail
+          remaining coll]
+     (if (empty? remaining)
+       result
+       (recur (f result (first remaining))
+              (rest remaining)))))
+  ([f [head & tail]]
+   (my-reduce f head tail)))
