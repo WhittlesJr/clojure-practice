@@ -4,17 +4,10 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/core.typed "0.3.32"  :classifier "slim"]]
+  :dependencies [[org.clojure/clojure "1.8.0"]]
 
-  :plugins [[lein-environ "1.0.0"]]
+  ::plugins [[cider/cider-nrepl "0.14.0"]]
 
-  :main ^:skip-aot clojure-noob.core
+  :main clojure-noob.core
 
-  :target-path "target/%s"
-
-  :profiles {:dev {:env {:squiggly {:checkers [:eastwood :typed]
-                                  :eastwood-exclude-linters [:unlimited-use]
-                                  :eastwood-options {;; :builtin-config-files ["myconfigfile.clj"]
-                                                     }}}}
-             :uberjar {:aot :all}})
+  :target-path "target/%s")
