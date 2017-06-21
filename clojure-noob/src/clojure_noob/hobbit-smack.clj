@@ -1,3 +1,5 @@
+(ns clojure-noob.core)
+
 (def asym-hobbit-body-parts [{:name "head" :size 3}
                              {:name "left-eye" :size 1}
                              {:name "left-ear" :size 1}
@@ -9,7 +11,7 @@
                              {:name "chest" :size 10}
                              {:name "back" :size 10}
                              {:name "left-forearm" :size 3}
-                             {:name "abdomen" :size 6}
+                             {:name "abdomen" :size 6 }
                              {:name "left-kidney" :size 1}
                              {:name "left-hand" :size 2}
                              {:name "left-knee" :size 2}
@@ -35,8 +37,6 @@
                (into final-body-parts
                      (set [part (matching-part part)])))))))
 
-(symmetrize-body-parts asym-hobbit-body-parts)
-
 (defn better-symmetrize-body-parts
   "Expects a seq of maps that have a :name and :size"
   [asym-body-parts]
@@ -54,3 +54,7 @@
       (if (> accumulated-size target)
         part
         (recur remaining (+ accumulated-size (:size (first remaining))))))))
+
+
+(symmetrize-body-parts asym-hobbit-body-parts)
+(hit asym-hobbit-body-parts)
