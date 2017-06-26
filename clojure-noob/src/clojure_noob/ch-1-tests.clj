@@ -343,7 +343,7 @@ failed-protagonist-names
 
 (defn my-reduce
   ([f initial coll]
-   (loop [result initiail
+   (loop [result initial
           remaining coll]
      (if (empty? remaining)
        result
