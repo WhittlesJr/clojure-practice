@@ -1,8 +1,14 @@
 (ns the-divine-cheese-code.core
+  (:refer-clojure :exclude [println])
+  (:require [the-divine-cheese-code.visualization.svg :as svg :refer [xml]]
+            [clojure.java.browse :as browse])
   (:gen-class))
 
-(require 'the-divine-cheese-code.visualization.svg)
-(refer 'the-divine-cheese-code.visualization.svg)
+;(require '[the-divine-cheese-code.visualization.svg :as svg])
+;(refer 'the-divine-cheese-code.visualization.svg)
+
+;(use '[the-divine-cheese-code.visualization.svg :as svg])
+
 (def heists [{:location "Cologne, Germany"
               :cheese-name "Archbishop Hildebold's Cheese Pretzel"
               :lat 50.95
@@ -24,6 +30,23 @@
               :lat 41.90
               :lng 12.45}])
 
+(defn url
+  [filename]
+  (str "file:///"
+       (System/getProperty "user.dir")
+       "/"
+       filename))
+
+(defn template
+  [contents]
+  (str "<style>polyline { fill:none; stroke:#588ld8; stroke-width:3}</style>"
+       contents))
+
 (defn -main
   [& args]
-  (println (points heists)))
+  (let [filename "map.html"]
+    (->> heists
+         (xml 50 100)
+         template
+         (spit filename))
+    (browse/browse-url (url filename))))
