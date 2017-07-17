@@ -72,8 +72,11 @@ lucky-number
         list-tail (nthrest infixed-list (+ list-position 3))]
 
     (if (= second-item operator)
-      (let [updated-list (concat list-head (conj list-tail (list second-item first-item third-item)))]
+      (let [grouped-operation (list second-item first-item third-item)
+            updated-list (concat list-head (conj list-tail grouped-operation))]
+
         (group-all-infixed-operations-in-list updated-list operator))
+
       infixed-list)))
 
 (defn group-all-infixed-operations-in-list
